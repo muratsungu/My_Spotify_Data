@@ -1,7 +1,7 @@
 DECLARE @JSON NVARCHAR(max)
 SELECT @JSON=BulkColumn
 FROM OPENROWSET (BULK 
-'C:\Users\Murat Süngü\Desktop\Spotify_data\YourLibrary.json', SINGLE_CLOB) T
+'C:\Users\Murat SÃ¼ngÃ¼\Desktop\Spotify_data\YourLibrary.json', SINGLE_CLOB) T
 --This should be file path of your JSON file
 SELECT DISTINCT
 --tablo1.*          --In this section, we pull the tables separately and
@@ -20,7 +20,7 @@ FROM OPENJSON (@JSON)
 	as table1
 
 CROSS APPLY OPENJSON(table1.tracks)		--We create separate tables by defining the objects we
-	WITH(							    --define as JSON objects and the objects under them as columns.
+	WITH(					--define as JSON objects and the objects under them as columns.
 	artist NVARCHAR(150),
 	album NVARCHAR(150),
 	track NVARCHAR(300)
